@@ -14,6 +14,7 @@ sys.path.append(str(Path().resolve().parent))
 sys.path.append(str(os.path.join(Path().resolve(), 'src')))
 from fuseformer_poetry.model.fuseformer import FuseFormer
 from ultralytics import SAM
+import time
 
 class Stack(object):
     def __init__(self, roll=False):
@@ -117,7 +118,7 @@ def get_ref_index(f, neighbor_ids, length):
 
 if __name__ == '__main__':
 
-
+    start = time.time()
     overrides = dict(conf=0.25, task="segment", mode="predict", imgsz=1024, model="sam2_b.pt")
     predictor = SAM2VideoPredictor(overrides=overrides)
     results = predictor(source="tests/test_1.mp4", bboxes=[(340, 335, 450, 393)], labels=[1])
@@ -203,7 +204,11 @@ if __name__ == '__main__':
         writer.write(cv2.cvtColor(
             np.array(comp).astype(np.uint8), cv2.COLOR_BGR2RGB))
     writer.release()
-    print('Finish in {}'.format(f"{name}_result.mp4"))
+    end = time.time()
+
+    print('Finish in %.2f seconds for all frames' % (end-start))
+    print('Finish in %.2f seconds for each frame' % ((end-start)/len(frames)))
+    print('number of frames:', len(frames))
 
 
 
