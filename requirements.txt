@@ -1,0 +1,6 @@
+opencv-python
+tqdm
+scipy
+scikit-image
+pillow
+mlflow

@@ -1,0 +1,7 @@
+src/fuseformer_poetry/data/DATA/
+
+mlartifacts
+
+mlruns
+
+.DS_Store

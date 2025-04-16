@@ -1,0 +1,31 @@
+{
+    "seed": 2025,
+    "ckp_dir": "checkpoints\\",
+    "data_loader": {
+        "name": "visdrone",
+        "data_root": "src\\fuseformer_poetry\\data\\DATA",
+        "w": 432,
+        "h": 240,
+        "sample_length": 5,
+        "num_test_frames": 24
+    },
+    "losses": {
+        "hole_weight": 1,
+        "valid_weight": 1,
+        "adversarial_weight": 0.01,
+        "GAN_LOSS": "hinge"
+    },
+    "trainer": {
+        "type": "Adam",
+        "beta1": 0.0,
+        "beta2": 0.99,
+        "lr": 1e-4,
+        "train_val_batch_size": 4,
+        "test_batch_size": 1,
+        "num_workers": 0,
+        "num_epoch": 100,
+        "log_every_n_steps": 10,
+        "fps_save_test_videos" : 12,
+        "precision": "16-mixed"
+    }
+}
